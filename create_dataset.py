@@ -42,14 +42,14 @@ if __name__ == "__main__":
     # Create ConVex dataset
     dataset = ConVexDataset(args.sampling_freq, args.dataset_root, args.output_folder, args.descriptor_name, clear_cache=True)
 
-    # # Sample dataset
-    # dataset.sample()
+    # Sample dataset
+    dataset.sample()
 
-    # # Annotate dataset
-    # dataset.annotate()
+    # Annotate dataset
+    dataset.annotate()
 
-    # # Dump dataset
-    # dataset.dump(args.dataset_name)
+    # Dump dataset
+    dataset.dump(args.dataset_name)
 
     # sys.exit(0)
     # dataset.render_2d_boxes()
