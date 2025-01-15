@@ -81,6 +81,7 @@ class Scene:
             self.base_scene.dataset.output_folder_path, 
             DEFAULT_SAMPLED_DATA_FOLDER, 
             self.base_scene.scenario, 
+            self.base_scene.id,
             self.weather_cond_label, 
             self.time_of_day_label
         )
