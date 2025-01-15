@@ -40,7 +40,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Create ConVex dataset
-    dataset = ConVexDataset(args.sampling_freq, args.dataset_root, args.output_folder, args.descriptor_name)
+    dataset = ConVexDataset(args.sampling_freq, args.dataset_root, args.output_folder, args.descriptor_name, clear_cache=True)
 
     # Sample dataset
     dataset.sample()
