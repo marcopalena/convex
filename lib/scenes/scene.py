@@ -435,7 +435,7 @@ class Scene:
         """
 
         # Annotate moveable targets
-        self.annotate_moveable_targets(filter_empty_bboxes)
+        # self.annotate_moveable_targets(filter_empty_bboxes)
 
         # Annotate infrastructural targets
         self.annotate_infrastructural_targets(filter_empty_bboxes)
@@ -520,6 +520,7 @@ class Scene:
             sample_bboxes = self.collect_sample_infrastructual_bboxes(sample)
 
             # Create sample annotations from bounding boxes
+            invalid_boxes = 0
             for target_id, bbox in sample_bboxes.items():
 
                 # Fetch bounding-box infrastructural target
@@ -539,7 +540,11 @@ class Scene:
                 visibility_level = self.compute_visibility_level(target, sample)
 
                 # Create sample annotation
-                annotation = SampleAnnotation(sample, bbox, instance, attributes, visibility_level)
+                try:
+                    annotation = SampleAnnotation(sample, bbox, instance, attributes, visibility_level)
+                except ValueError:
+                    invalid_boxes += 1
+                    continue
 
                 # Filter bbox annotations with no LiDAR points if need be
                 if filter_empty_bboxes and annotation.num_lidar_points == 0:
@@ -561,7 +566,7 @@ class Scene:
         self.infra_instances = instances
 
         # Log annotating results
-        logging.info(f"Added {count} bbox annotations with {count_attr} attributes")
+        logging.info(f"Added {count} bbox infrastructural annotations with {count_attr} attributes ({invalid_boxes} invalid boxes)")
 
     def collect_sample_moveable_bboxes(self, sample):
         """
