@@ -435,7 +435,7 @@ class Scene:
         """
 
         # Annotate moveable targets
-        # self.annotate_moveable_targets(filter_empty_bboxes)
+        self.annotate_moveable_targets(filter_empty_bboxes)
 
         # Annotate infrastructural targets
         self.annotate_infrastructural_targets(filter_empty_bboxes)
