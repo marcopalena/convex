@@ -794,21 +794,23 @@ class ConVexDataset:
             for weather_label in base_scene.scenes:
                 for scene in base_scene.scenes[weather_label].values():
                     for instance in scene.instances.values():
-                        instance_records.append({
-                            "token": instance.token,
-                            "category_token": instance.target.category.token,
-                            "nbr_annotations": len(instance.annotations),
-                            "first_annotation_token" : instance.annotations[0].token,
-                            "last_annotation_token" : instance.annotations[-1].token
-                        })
+                        if len(instance.annotations) > 0:
+                            instance_records.append({
+                                "token": instance.token,
+                                "category_token": instance.target.category.token,
+                                "nbr_annotations": len(instance.annotations),
+                                "first_annotation_token" : instance.annotations[0].token,
+                                "last_annotation_token" : instance.annotations[-1].token
+                            })
                     for instance in scene.infra_instances.values():
-                        instance_records.append({
-                            "token": instance.token,
-                            "category_token": instance.target.category.token,
-                            "nbr_annotations": len(instance.annotations),
-                            "first_annotation_token" : instance.annotations[0].token,
-                            "last_annotation_token" : instance.annotations[-1].token
-                        })
+                        if len(instance.annotations) > 0:
+                            instance_records.append({
+                                "token": instance.token,
+                                "category_token": instance.target.category.token,
+                                "nbr_annotations": len(instance.annotations),
+                                "first_annotation_token" : instance.annotations[0].token,
+                                "last_annotation_token" : instance.annotations[-1].token
+                            })
 
         # Dump sample records
         with open(output_file_path, 'a') as output_file:
