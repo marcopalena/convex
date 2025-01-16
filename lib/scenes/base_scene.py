@@ -527,7 +527,7 @@ class BaseScene:
             self.map.logs.append(scene.log)
 
             # TODO: relax
-            # break
+            break
 
     def fetch_timestamp(self, weather_cond_label, time_of_day_label):
         scene_video_feeds_path = os.path.join(self.path, weather_cond_label, time_of_day_label, "raw", "feeds")
@@ -662,9 +662,9 @@ class BaseScene:
                 scene = self.scenes[weather_cond_label][time_of_day_label]
 
                 # Do not annotate again scenes loaded from cache
-                if not disable_cache and scene.state == SceneState.ANNOTATED:
-                    logging.info(f"Skipping annotating of already annotated scene: {self.id}/{weather_cond_label}/{time_of_day_label} (num_annotations={scene.num_annotations})")
-                    continue
+                # if not disable_cache and scene.state == SceneState.ANNOTATED:
+                #     logging.info(f"Skipping annotating of already annotated scene: {self.id}/{weather_cond_label}/{time_of_day_label} (num_annotations={scene.num_annotations})")
+                #     continue
 
                 # Log annotating scene
                 logging.info(f"Annotating scene: {self.id}/{weather_cond_label}/{time_of_day_label}")
