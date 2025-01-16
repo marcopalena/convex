@@ -527,7 +527,7 @@ class BaseScene:
             self.map.logs.append(scene.log)
 
             # TODO: relax
-            break
+            # break
 
     def fetch_timestamp(self, weather_cond_label, time_of_day_label):
         scene_video_feeds_path = os.path.join(self.path, weather_cond_label, time_of_day_label, "raw", "feeds")
