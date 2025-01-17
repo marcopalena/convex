@@ -361,7 +361,10 @@ class Scene:
             self.ego_poses[agent_ego_pose.token] = agent_ego_pose
             
             # Extract point cloud info from the agent's LiDAR log
-            annotated_lidar_points = self.log.lidar_log.get_agent_points_at_frame(agent, frame)
+            try:
+                annotated_lidar_points = self.log.lidar_log.get_agent_points_at_frame(agent, frame)
+            except KeyError:
+                continue
             positions = [lidar_point.coordinates for lidar_point, _ in annotated_lidar_points]
             normals = [lidar_point.normal for lidar_point, _ in annotated_lidar_points]
             intensities = [lidar_point.intensity for lidar_point, _ in annotated_lidar_points]
