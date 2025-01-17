@@ -653,7 +653,10 @@ class Scene:
         if isinstance(target, Pedestrian):
 
             # Get pedestrian ego speed
-            ego_speed = self.log.pedestrian_log.get_ego_speed(target.id, frame)
+            try:
+                ego_speed = self.log.pedestrian_log.get_ego_speed(target.id, frame)
+            except KeyError:
+                return attributes
 
             # Check if pedestrian is moving or stationary
             if ego_speed.is_moving():
